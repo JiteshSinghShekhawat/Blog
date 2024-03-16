@@ -1,0 +1,36 @@
+<%- include("partials/header.ejs") %>
+
+<div class="middle">
+<% if(locals.data){ %>
+    <%for(let i=data.length-1;i>=0;i--){%>
+        <div class="block">
+            <h2 class="username"><%=data[i][0] %></h2>
+            <p><%= data[i][1] %></p>
+        </div>
+    <%}%>
+<% }%>
+<% if(locals.post){%>
+    <form action="/input" method="post">
+        <label for="blog"><h3>Write Here:</h3></label>
+        <textarea name="blog" rows="8" cols="40"></textarea><br>
+        <input class="sub" type="submit" value="Submit">
+    </form> 
+<%}%>
+<%if(locals.myFeed){%>
+    <%for(let i=arr.length-1;i>=0;i--){%>
+        <% if(activeUser!==arr[i][0])continue ;%> 
+        <%flag = false;%>
+        <div class="block">
+            <h2 class="username"><%=arr[i][0] %></h2>
+            <p><%= arr[i][1] %></p>
+        </div>
+    <%}%>
+    <% if(locals.flag && flag) {%>
+        <div class="block">
+            <h2 class="username">Sorry You haven't Posted anything Yet!!!</h2>
+        </div>
+    <%}%>
+<%}%>
+</div>
+
+<%- include("partials/footer.ejs") %>

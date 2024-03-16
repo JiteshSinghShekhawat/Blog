@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BoldPerspectives.</title>
+    <style>
+        body{
+            background-color: #8556a5e0;
+            align-items:center ; 
+            text-align:center ;
+        }
+        .mainContainer{
+            display : flex; 
+            align-items:center ; 
+            justify-content: center;
+            height:100vh ;
+        }
+        .container{
+            display:inline ;
+            padding:5% 10%;
+            background-color: #AD88C6;
+            border-radius:20px;
+            border:2px solid black ;
+            min-height:250px ; 
+            min-width:250px ;
+            font-weight: 700;
+            font-family:Arial, Helvetica, sans-serif ; 
+        }
+        form{
+            display:inline-block;
+        }
+        img{
+            height:50px ; 
+            padding:20px ;
+            padding-left:0px;
+        }
+        input{
+            margin:5px;
+            border-radius:20px;
+            font-weight:600;
+        }
+        .button{
+            background-color:white;
+            border:0px ;
+            border-radius:20px;
+            font-weight:600;
+            padding:6px 10px;
+            margin-top:10px;
+        }
+        .button:hover{
+            cursor:pointer ;
+            border-radius:11px;
+        }
+        .button2:hover{
+            cursor:pointer ;
+            border-radius:11px ;
+        }
+        .registerForm{
+            width:90% ;
+        }
+        .button2{
+            margin-top:2rem;
+            width:100% ;
+            background-color: #8556a5e0 ;
+            border:0 ; 
+            border-radius:20px;
+            color:white ;
+            font-weight:700px ;
+            font-size:medium ;
+            padding:7px 5px;
+        }
+        .inp{height:18px;}
+        h4{
+            color: yellow ;
+            font-weight:400 ;
+        }
+    </style>
+</head>
+<body>
+    <div class="mainContainer">
+        <div class="container">
+            <% if(locals.flag) {%>
+                <form action="/create" method="POST">
+                    <label class="inp" for="userId">User Id:</label><br>
+                    <input type="text" id="userId" name="userId" required><br>
+                    <label class="inp" for="password">Password:</label><br>
+                    <input type="password" id="password" name="password" required><br>
+                    <input class="button" type="submit" value="Create Account" style="width:70%;">
+                </form>
+                <%if(locals.error){%><h4><%= error %> </h4><%}%>
+                <form class="registerForm" action="/signin" method="POST">
+                    <button type="submit" class="button2">To Sign In </button>
+                </form>
+                <%}else {%>
+                    <img src="images/loginIcon.png" alt="">
+                    <form action="/submit" method="POST">
+                        <label for="userId">User Id:</label><br>
+                        <input class="inp" type="text" id="userId" name="userId" required><br>
+                        <label for="password">Password:</label><br>
+                        <input class="inp" type="password" id="password" name="password" required><br>
+                        <input class="button" type="submit" value="Submit">
+                    </form>
+                <%if(locals.error){%><h4><%=error %> </h4><%}%>
+                    <form class="registerForm" action="/register" method="POST">
+                        <button type="submit" class="button2">To Register</button>
+                    </form>
+            <%}%>
+        </div>
+    </div>
+</body>
+</html>
